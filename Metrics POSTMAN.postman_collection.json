@@ -1,0 +1,330 @@
+{
+	"info": {
+		"_postman_id": "5c33ae22-7b8f-4569-b94d-a93ddf7488e7",
+		"name": "Metrics POSTMAN",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39606586"
+	},
+	"item": [
+		{
+			"name": "api1",
+			"item": [
+				{
+					"name": "/linespeed - 201 CREATED",
+					"protocolProfileBehavior": {
+						"strictSSL": false,
+						"followRedirects": false,
+						"disableUrlEncoding": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"lineId\": 2,\r\n\"speed\": 80.2,\r\n\"timestamp\": {{epochMillis}}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8088/metricsservice/api1/linespeed",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8088",
+							"path": [
+								"metricsservice",
+								"api1",
+								"linespeed"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/linespeed - 204 NO CONTENT",
+					"protocolProfileBehavior": {
+						"strictSSL": false,
+						"followRedirects": false,
+						"disableUrlEncoding": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"lineId\": 2,\r\n\"speed\": 80.2,\r\n\"timestamp\": 1731179375591\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8088/metricsservice/api1/linespeed",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8088",
+							"path": [
+								"metricsservice",
+								"api1",
+								"linespeed"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/linespeed - 404 NOT FOUND",
+					"protocolProfileBehavior": {
+						"strictSSL": false,
+						"followRedirects": false,
+						"disableUrlEncoding": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"lineId\": 1,\r\n\"speed\": 80.2,\r\n\"timestamp\": {{epochMillis}}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8088/metricsservice/api1/linespeed",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8088",
+							"path": [
+								"metricsservice",
+								"api1",
+								"linespeed"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"// Get the current epoch time in milliseconds",
+							"const epochMillis = Date.now();",
+							"",
+							"// Set it as an environment or global variable if needed",
+							"pm.environment.set(\"epochMillis\", epochMillis);  // Stores in the environment",
+							"pm.globals.set(\"epochMillis\", epochMillis);       // Alternatively, stores globally",
+							"",
+							"console.log(\"Epoch time in milliseconds:\", epochMillis);"
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "api2",
+			"item": [
+				{
+					"name": "/metrics/{lineid}",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8088/metricsservice/api2/metrics?lineId=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8088",
+							"path": [
+								"metricsservice",
+								"api2",
+								"metrics"
+							],
+							"query": [
+								{
+									"key": "lineId",
+									"value": "2",
+									"description": "production line ID"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/metrics/{lineid} - 204 NO CONTENT",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8088/metricsservice/api2/metrics?lineId=10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8088",
+							"path": [
+								"metricsservice",
+								"api2",
+								"metrics"
+							],
+							"query": [
+								{
+									"key": "lineId",
+									"value": "10",
+									"description": "production line ID"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/metrics/{lineid} - 404 NOT FOUND",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8088/metricsservice/api2/metrics?lineId=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8088",
+							"path": [
+								"metricsservice",
+								"api2",
+								"metrics"
+							],
+							"query": [
+								{
+									"key": "lineId",
+									"value": "1",
+									"description": "production line ID"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/allMetrics",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"strictSSL": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8088/metricsservice/api2/allMetrics",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8088",
+							"path": [
+								"metricsservice",
+								"api2",
+								"allMetrics"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Ping",
+			"protocolProfileBehavior": {
+				"strictSSL": false,
+				"followRedirects": false,
+				"disableUrlEncoding": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8088/metricsservice/ping",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8088",
+					"path": [
+						"metricsservice",
+						"ping"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
